@@ -16,33 +16,35 @@ import {
 const Login = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  //media
+  // media
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
   // states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  //register ctrl
+  // login controller
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/v1/auth/login", { email, password });
+      // Updated axios POST request with full URL for the backend
+      await axios.post("http://localhost:3000/api/v1/auth/login", { email, password });
       toast.success("Login Successfully");
-      localStorage.setItem("authToken", true);
-      navigate("/");
+      localStorage.setItem("authToken", true);  // Set authToken in localStorage
+      navigate("/");  // Redirect to the home page
     } catch (err) {
-      console.log(error);
-      if (err.response.data.error) {
-        setError(err.response.data.error);
+      console.log(err);  // Corrected from `console.log(error)` to `console.log(err)`
+      if (err.response && err.response.data.error) {
+        setError(err.response.data.error);  // Set error message from the backend
       } else if (err.message) {
-        setError(err.message);
+        setError(err.message);  // Set any other error messages
       }
       setTimeout(() => {
-        setError("");
+        setError("");  // Clear the error message after 5 seconds
       }, 5000);
     }
   };
+
   return (
     <Box
       width={isNotMobile ? "40%" : "80%"}
@@ -67,9 +69,7 @@ const Login = () => {
           margin="normal"
           fullWidth
           value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
           label="password"
@@ -78,9 +78,7 @@ const Login = () => {
           margin="normal"
           fullWidth
           value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <Button
           type="submit"
@@ -92,7 +90,7 @@ const Login = () => {
           Sign In
         </Button>
         <Typography mt={2}>
-          Dont have an account ? <Link to="/register">Please Register</Link>
+          Don't have an account? <Link to="/register">Please Register</Link>
         </Typography>
       </form>
     </Box>

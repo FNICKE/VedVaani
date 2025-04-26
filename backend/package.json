@@ -32,5 +32,6 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.1.10",
     "react-hot-toast": "^2.5.2"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

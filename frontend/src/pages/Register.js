@@ -16,7 +16,7 @@ import {
 const Register = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  //media
+  // media
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
   // states
   const [username, setUsername] = useState("");
@@ -24,25 +24,26 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  //register ctrl
+  // register ctrl
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/v1/auth/register", { username, email, password });
+      await axios.post("http://localhost:3000/api/v1/auth/register", { username, email, password });
       toast.success("User Register Successfully");
       navigate("/login");
     } catch (err) {
       console.log(error);
-      if (err.response.data.error) {
+      if (err.response && err.response.data && err.response.data.error) {
         setError(err.response.data.error);
       } else if (err.message) {
         setError(err.message);
       }
       setTimeout(() => {
         setError("");
-      }, 5000);
+      }, 3000);
     }
   };
+
   return (
     <Box
       width={isNotMobile ? "40%" : "80%"}
@@ -101,7 +102,7 @@ const Register = () => {
           Sign Up
         </Button>
         <Typography mt={2}>
-          Already have an account ? <Link to="/login">Please Login</Link>
+          Already have an account? <Link to="/login">Please Login</Link>
         </Typography>
       </form>
     </Box>

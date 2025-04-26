@@ -1,35 +1,37 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { subscribe } = require('diagnostics_channel');
 const cookie = require('cookie');
 
-
 const userSchema = new mongoose.Schema({
-            username: {
-                type: String,
-                required: [true, 'Please add a username'],
-                unique: true,
-            },
-            email: {
-                type: String,
-                required: [true, 'Please add an email'],
-                unique: true,
-            },
-            password: {
-                type: String,
-                required: [true, 'Please add a password'],
-                minlength: [6, 'Password must be up to 6 characters'],
-            },
-            customerId: {
-                type: String,
-                default: "",
-            },
-            subscribed: {
-                type: String,
-                default: "",
-            },
-})
+    username: {
+        type: String,
+        required: [true, 'Please add a username'],
+        unique: true,
+    },
+    email: {
+        type: String,
+        required: [true, 'Please add an email'],
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: [true, 'Please add a password'],
+        minlength: [6, 'Password must be up to 6 characters'],
+    },
+    customerId: {
+        type: String,
+        default: "",
+    },
+    subscribed: {
+        type: String,
+        default: "",
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now, // Automatically sets the date when the user is created
+    }
+});
 
 // Hash password before saving user to database
 userSchema.pre('save', async function (next) {
@@ -41,18 +43,28 @@ userSchema.pre('save', async function (next) {
     next();
 });
 
-//Match password
+// Match password
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
-}
+};
 
-//Generate token
+// Generate token
 userSchema.methods.getSignedToken = function (res) {
-    const accessToken = JWT.sign({ id: this._id }, process.env.JWT_ACCESS_SECRET, {expiresIn: process.env.JWT_ACCESS_EXPIREIN})
-    const refreshToken = JWT.sign({ id: this._id }, process.env.JWT_REFRESH_TOKEN, {expiresIn: process.env.JWT_REFRESH_EXPIREIN})
-    res.cookie('refreshToken',`${refreshToken}`,{maxAge: 8600 * 7000, httpOnly: true} )
-}
+    const accessToken = jwt.sign({ id: this._id }, process.env.JWT_ACCESS_SECRET, { expiresIn: process.env.JWT_ACCESS_EXPIREIN });
+    const refreshToken = jwt.sign({ id: this._id }, process.env.JWT_REFRESH_TOKEN, { expiresIn: process.env.JWT_REFRESH_EXPIREIN });
+    
+    // Set refresh token in an HttpOnly cookie
+    res.cookie('refreshToken', refreshToken, {
+        maxAge: 8600 * 7000, // Refresh token expiration time
+        httpOnly: true, // Prevents client-side JavaScript from accessing it
+        secure: process.env.NODE_ENV === 'production' ? true : false, // Ensure secure cookies in production
+        sameSite: 'Strict', // Optional, adds extra security
+    });
 
-    const User = mongoose.model('User', userSchema);
+    // Return the access token for the client
+    return accessToken;
+};
 
-    module.exports = User;
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
