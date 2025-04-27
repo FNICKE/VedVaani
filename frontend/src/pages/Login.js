@@ -28,10 +28,13 @@ const Login = () => {
     e.preventDefault();
     try {
       // Updated axios POST request with full URL for the backend
-      await axios.post("http://localhost:3000/api/v1/auth/login", { email, password });
-      toast.success("Login Successfully");
-      localStorage.setItem("authToken", true);  // Set authToken in localStorage
-      navigate("/");  // Redirect to the home page
+      const { data } = await axios.post("http://localhost:3000/api/v1/auth/login", { email, password });
+      if(data.token.accessToken){
+        localStorage.setItem("authToken", true);  // Set authToken in localStorage
+        toast.success("Login Successfully");
+        navigate("/");  // Redirect to the home page
+        
+      }
     } catch (err) {
       console.log(err);  // Corrected from `console.log(error)` to `console.log(err)`
       if (err.response && err.response.data.error) {
