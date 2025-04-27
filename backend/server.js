@@ -9,7 +9,7 @@ const errorHandler = require('./middlewares/errorMiddleware');
 
 // Routes Path
 const authRoutes = require('./routes/authRoutes');
-const User = require('./models/User'); // Assuming you have a User model for registration
+const User = require('./models/userModel'); // Assuming you have a User model for registration
 
 dotenv.config();
 
