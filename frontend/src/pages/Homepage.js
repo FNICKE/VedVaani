@@ -23,7 +23,7 @@ const Homepage = () => {
       {/* Middle Information Section */}
       <Box flex={1} color="white" p={4}>
         <Typography variant="h2" fontWeight="bold" mb={2}>
-          Welcome to AI VedVaani 🚀
+          Welcome to VedVaani 🚀
         </Typography>
         <Typography variant="h5" mb={4}>
           Unlock the potential of AI - Summarize texts, generate paragraphs, chat with AI, convert code, and create sci-fi images effortlessly.
