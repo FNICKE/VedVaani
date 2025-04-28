@@ -16,95 +16,111 @@ import {
 const Register = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  // media
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
-  // states
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // register ctrl
+  // Handle register
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:3000/api/v1/auth/register", { username, email, password });
-      toast.success("User Register Successfully");
+      toast.success("User Registered Successfully!");
       navigate("/login");
     } catch (err) {
-      console.log(error);
-      if (err.response && err.response.data && err.response.data.error) {
+      console.error(err);
+      if (err.response && err.response.data.error) {
         setError(err.response.data.error);
       } else if (err.message) {
         setError(err.message);
       }
-      setTimeout(() => {
-        setError("");
-      }, 3000);
+      setTimeout(() => setError(""), 3000);
     }
   };
 
   return (
     <Box
-      width={isNotMobile ? "40%" : "80%"}
-      p={"2rem"}
-      m={"2rem auto"}
-      borderRadius={5}
-      sx={{ boxShadow: 5 }}
-      backgroundColor={theme.palette.background.alt}
+      width="100vw"
+      height="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      sx={{
+        backgroundColor: "#001F3F", // Navy blue background
+      }}
     >
-      <Collapse in={error}>
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {error}
-        </Alert>
-      </Collapse>
-      <form onSubmit={handleSubmit}>
-        <Typography variant="h3">Sign Up</Typography>
-        <TextField
-          label="username"
-          required
-          margin="normal"
-          fullWidth
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-        <TextField
-          label="email"
-          type="email"
-          required
-          margin="normal"
-          fullWidth
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <TextField
-          label="password"
-          type="password"
-          required
-          margin="normal"
-          fullWidth
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          size="large"
-          sx={{ color: "white", mt: 2 }}
-        >
-          Sign Up
-        </Button>
-        <Typography mt={2}>
-          Already have an account? <Link to="/login">Please Login</Link>
-        </Typography>
-      </form>
+      <Box
+        width={isNotMobile ? "40%" : "80%"}
+        p={4}
+        borderRadius={5}
+        sx={{
+          backgroundColor: "#f9fafb", // Light gray (like Tailwind's bg-gray-50)
+          boxShadow: 5,
+        }}
+      >
+        <Collapse in={!!error}>
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        </Collapse>
+        <form onSubmit={handleSubmit}>
+          <Typography variant="h4" fontWeight="bold" mb={3} textAlign="center">
+            Sign Up
+          </Typography>
+
+          <TextField
+            label="Username"
+            required
+            fullWidth
+            margin="normal"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            label="Email"
+            type="email"
+            required
+            fullWidth
+            margin="normal"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            required
+            fullWidth
+            margin="normal"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            size="large"
+            sx={{
+              mt: 3,
+              backgroundColor: "#3b82f6", // Tailwind blue-500
+              color: "white",
+              "&:hover": { backgroundColor: "#2563eb" }, // Tailwind blue-600
+            }}
+          >
+            Sign Up
+          </Button>
+
+          <Typography mt={2} textAlign="center">
+            Already have an account?{" "}
+            <Link to="/login" style={{ color: "#2563eb", fontWeight: 500 }}>
+              Please Login
+            </Link>
+          </Typography>
+        </form>
+      </Box>
     </Box>
   );
 };

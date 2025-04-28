@@ -16,86 +16,100 @@ import {
 const Login = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  // media
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
-  // states
+
+  // States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // login controller
+  // Handle login
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Updated axios POST request with full URL for the backend
       const { data } = await axios.post("http://localhost:3000/api/v1/auth/login", { email, password });
-      if(data.token.accessToken){
-        localStorage.setItem("authToken", true);  // Set authToken in localStorage
-        toast.success("Login Successfully");
-        navigate("/");  // Redirect to the home page
-        
+      
+      if (data.token) {
+        localStorage.setItem("authToken", true);
+        toast.success("Login Successful!");
+        navigate("/");
       }
     } catch (err) {
-      console.log(err);  // Corrected from `console.log(error)` to `console.log(err)`
+      console.error(err);
       if (err.response && err.response.data.error) {
-        setError(err.response.data.error);  // Set error message from the backend
+        setError(err.response.data.error);
       } else if (err.message) {
-        setError(err.message);  // Set any other error messages
+        setError(err.message);
       }
-      setTimeout(() => {
-        setError("");  // Clear the error message after 5 seconds
-      }, 5000);
+      setTimeout(() => setError(""), 5000);
     }
   };
 
   return (
     <Box
-      width={isNotMobile ? "40%" : "80%"}
-      p={"2rem"}
-      m={"2rem auto"}
-      borderRadius={5}
-      sx={{ boxShadow: 5 }}
-      backgroundColor={theme.palette.background.alt}
+      width="100vw"
+      height="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      sx={{
+        backgroundColor: "#001F3F", // Navy blue background
+      }}
     >
-      <Collapse in={error}>
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {error}
-        </Alert>
-      </Collapse>
-      <form onSubmit={handleSubmit}>
-        <Typography variant="h3">Sign In</Typography>
+      <Box
+        width={isNotMobile ? "40%" : "80%"}
+        p={4}
+        borderRadius={5}
+        sx={{
+          boxShadow: 5,
+          backgroundColor: theme.palette.background.paper,
+        }}
+      >
+        <Collapse in={!!error}>
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        </Collapse>
+        <form onSubmit={handleSubmit}>
+          <Typography variant="h4" fontWeight="bold" mb={3} textAlign="center">
+            Sign In
+          </Typography>
 
-        <TextField
-          label="email"
-          type="email"
-          required
-          margin="normal"
-          fullWidth
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          label="password"
-          type="password"
-          required
-          margin="normal"
-          fullWidth
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          size="large"
-          sx={{ color: "white", mt: 2 }}
-        >
-          Sign In
-        </Button>
-        <Typography mt={2}>
-          Don't have an account? <Link to="/register">Please Register</Link>
-        </Typography>
-      </form>
+          <TextField
+            label="Email"
+            type="email"
+            required
+            fullWidth
+            margin="normal"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <TextField
+            label="Password"
+            type="password"
+            required
+            fullWidth
+            margin="normal"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            size="large"
+            sx={{ mt: 3, color: "white", backgroundColor: "#0056b3", "&:hover": { backgroundColor: "#004494" } }}
+          >
+            Sign In
+          </Button>
+
+          <Typography mt={2} textAlign="center">
+            Don't have an account? <Link to="/register" style={{ color: "#007bff" }}>Register</Link>
+          </Typography>
+        </form>
+      </Box>
     </Box>
   );
 };

@@ -1,173 +1,135 @@
 import React from "react";
-import { Box, Typography, Card, Stack } from "@mui/material";
+import { Box, Typography, Card, Stack, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import DescriptionRounded from "@mui/icons-material/DescriptionRounded";
 import FormatAlignLeftOutlined from "@mui/icons-material/FormatAlignLeftOutlined";
 import ChatRounded from "@mui/icons-material/ChatRounded";
+import CodeRounded from "@mui/icons-material/CodeRounded";
+import ImageRounded from "@mui/icons-material/ImageRounded";
+
 const Homepage = () => {
   const navigate = useNavigate();
+
   return (
-    <>
-      <Box sx={{ display: "flex", flexDirection: "row" }}>
-        <Box p={2}>
-          <Typography variant="h4" mb={2} fontWeight="bold">
-            Text Generation
-          </Typography>
-          <Card
-            onClick={() => navigate("/summary")}
-            sx={{
-              boxShadow: 2,
-              borderRadius: 5,
-              height: 190,
-              width: 200,
-              "&:hover": {
-                border: 2,
-                boxShadow: 0,
-                borderColor: "primary.dark",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <DescriptionRounded
-              sx={{ fontSize: 80, color: "primary.main", mt: 2, ml: 2 }}
-            />
-            <Stack p={3} pt={0}>
-              <Typography fontWeight="bold" variant="h5">
-                TEXT SUMAMRY
-              </Typography>
-              <Typography variant="h6">
-                Summarize long text into short sentences
-              </Typography>
-            </Stack>
-          </Card>
-        </Box>
-        <Box p={2}>
-          <Typography variant="h4" mb={2} fontWeight="bold">
-            Parapgraph Generation
-          </Typography>
-          <Card
-            onClick={() => navigate("/paragraph")}
-            sx={{
-              boxShadow: 2,
-              borderRadius: 5,
-              height: 190,
-              width: 200,
-              "&:hover": {
-                border: 2,
-                boxShadow: 0,
-                borderColor: "primary.dark",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <FormatAlignLeftOutlined
-              sx={{ fontSize: 80, color: "primary.main", mt: 2, ml: 2 }}
-            />
-            <Stack p={3} pt={0}>
-              <Typography fontWeight="bold" variant="h5">
-                Parapgraph
-              </Typography>
-              <Typography variant="h6">
-                Generate Paragraph with words
-              </Typography>
-            </Stack>
-          </Card>
-        </Box>
-        <Box p={2}>
-          <Typography variant="h4" mb={2} fontWeight="bold">
-            AI ChatBot
-          </Typography>
-          <Card
-            onClick={() => navigate("/chatbot")}
-            sx={{
-              boxShadow: 2,
-              borderRadius: 5,
-              height: 190,
-              width: 200,
-              "&:hover": {
-                border: 2,
-                boxShadow: 0,
-                borderColor: "primary.dark",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ChatRounded
-              sx={{ fontSize: 80, color: "primary.main", mt: 2, ml: 2 }}
-            />
-            <Stack p={3} pt={0}>
-              <Typography fontWeight="bold" variant="h5">
-                Chatbot
-              </Typography>
-              <Typography variant="h6">Chat With AI Chatbot</Typography>
-            </Stack>
-          </Card>
-        </Box>
-        <Box p={2}>
-          <Typography variant="h4" mb={2} fontWeight="bold">
-            Javascript Converter
-          </Typography>
-          <Card
-            onClick={() => navigate("/js-converter")}
-            sx={{
-              boxShadow: 2,
-              borderRadius: 5,
-              height: 190,
-              width: 200,
-              "&:hover": {
-                border: 2,
-                boxShadow: 0,
-                borderColor: "primary.dark",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ChatRounded
-              sx={{ fontSize: 80, color: "primary.main", mt: 2, ml: 2 }}
-            />
-            <Stack p={3} pt={0}>
-              <Typography fontWeight="bold" variant="h5">
-                JS CONVERTER
-              </Typography>
-              <Typography variant="h6">
-                Trasnlate english to javascript code
-              </Typography>
-            </Stack>
-          </Card>
-        </Box>
-        <Box p={2}>
-          <Typography variant="h4" mb={2} fontWeight="bold">
-            AI SCIFI Images
-          </Typography>
-          <Card
-            onClick={() => navigate("/scifi-image")}
-            sx={{
-              boxShadow: 2,
-              borderRadius: 5,
-              height: 190,
-              width: 200,
-              "&:hover": {
-                border: 2,
-                boxShadow: 0,
-                borderColor: "primary.dark",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ChatRounded
-              sx={{ fontSize: 80, color: "primary.main", mt: 2, ml: 2 }}
-            />
-            <Stack p={3} pt={0}>
-              <Typography fontWeight="bold" variant="h5">
-                Scifi Image
-              </Typography>
-              <Typography variant="h6">Generate Scifi images</Typography>
-            </Stack>
-          </Card>
-        </Box>
+    <Box
+      width="100vw"
+      height="100vh"
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      p={4}
+      sx={{ backgroundColor: "#001F3F" }}
+    >
+      {/* Middle Information Section */}
+      <Box flex={1} color="white" p={4}>
+        <Typography variant="h2" fontWeight="bold" mb={2}>
+          Welcome to AI VedVaani 🚀
+        </Typography>
+        <Typography variant="h5" mb={4}>
+          Unlock the potential of AI - Summarize texts, generate paragraphs, chat with AI, convert code, and create sci-fi images effortlessly.
+        </Typography>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            backgroundColor: "primary.main",
+            color: "white",
+            borderRadius: 3,
+            paddingX: 4,
+            paddingY: 1.5,
+            "&:hover": {
+              backgroundColor: "primary.dark",
+            },
+          }}
+          onClick={() => navigate("/summary")}
+        >
+          Get Started
+        </Button>
       </Box>
-    </>
+
+      {/* Right Feature Cards Section */}
+      <Stack spacing={4} flex={1} alignItems="center">
+        {/* Text Summary */}
+        <Card
+          onClick={() => navigate("/summary")}
+          sx={cardStyle}
+        >
+          <DescriptionRounded sx={iconStyle} />
+          <Typography variant="h5" fontWeight="bold">
+            Text Summary
+          </Typography>
+        </Card>
+
+        {/* Paragraph Generator */}
+        <Card
+          onClick={() => navigate("/paragraph")}
+          sx={cardStyle}
+        >
+          <FormatAlignLeftOutlined sx={iconStyle} />
+          <Typography variant="h5" fontWeight="bold">
+            Paragraph
+          </Typography>
+        </Card>
+
+        {/* AI ChatBot */}
+        <Card
+          onClick={() => navigate("/chatbot")}
+          sx={cardStyle}
+        >
+          <ChatRounded sx={iconStyle} />
+          <Typography variant="h5" fontWeight="bold">
+            Chatbot
+          </Typography>
+        </Card>
+
+        {/* JS Converter */}
+        <Card
+          onClick={() => navigate("/js-converter")}
+          sx={cardStyle}
+        >
+          <CodeRounded sx={iconStyle} />
+          <Typography variant="h5" fontWeight="bold">
+            JS Converter
+          </Typography>
+        </Card>
+
+        {/* Sci-Fi Image Generator */}
+        <Card
+          onClick={() => navigate("/scifi-image")}
+          sx={cardStyle}
+        >
+          <ImageRounded sx={iconStyle} />
+          <Typography variant="h5" fontWeight="bold">
+            SciFi Image
+          </Typography>
+        </Card>
+      </Stack>
+    </Box>
   );
+};
+
+// Card and Icon Styles
+const cardStyle = {
+  width: 250,
+  height: 100,
+  display: "flex",
+  alignItems: "center",
+  padding: 2,
+  borderRadius: 4,
+  boxShadow: 4,
+  backgroundColor: "#f9fafb",
+  cursor: "pointer",
+  "&:hover": {
+    boxShadow: 8,
+    transform: "scale(1.05)",
+    transition: "0.3s",
+  },
+};
+
+const iconStyle = {
+  fontSize: 40,
+  color: "primary.main",
+  marginRight: 2,
 };
 
 export default Homepage;
