@@ -26,7 +26,7 @@ const Summary = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/v1/openai/summary", { text });
+      const { data } = await axios.post("http://localhost:5000/api/v1/openai/summary", { text });
       console.log(data);
       setSummary(data);
     } catch (err) {
