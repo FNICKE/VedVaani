@@ -26,11 +26,22 @@ const Login = () => {
   // Handle login
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    console.log("Submitting login:", { email: trimmedEmail, password: trimmedPassword }); // Debug log
+    if (!trimmedEmail || !trimmedPassword) {
+      setError("Email and password are required");
+      setTimeout(() => setError(""), 5000);
+      return;
+    }
     try {
-      const { data } = await axios.post("http://localhost:3000/api/v1/auth/login", { email, password });
-      
-      if (data.token) {
-        localStorage.setItem("authToken", true);
+      const { data } = await axios.post(
+        "http://localhost:5000/api/v1/auth/login", // Use proxied path
+        { email: trimmedEmail, password: trimmedPassword }
+      );
+
+      if (data.success && data.token) {
+        localStorage.setItem("authToken", data.token); // Store JWT
         toast.success("Login Successful!");
         navigate("/");
       }
@@ -100,13 +111,21 @@ const Login = () => {
             fullWidth
             variant="contained"
             size="large"
-            sx={{ mt: 3, color: "white", backgroundColor: "#0056b3", "&:hover": { backgroundColor: "#004494" } }}
+            sx={{
+              mt: 3,
+              color: "white",
+              backgroundColor: "#0056b3",
+              "&:hover": { backgroundColor: "#004494" },
+            }}
           >
             Sign In
           </Button>
 
           <Typography mt={2} textAlign="center">
-            Don't have an account? <Link to="/register" style={{ color: "#007bff" }}>Register</Link>
+            Don't have an account?{" "}
+            <Link to="/register" style={{ color: "#007bff" }}>
+              Register
+            </Link>
           </Typography>
         </form>
       </Box>
