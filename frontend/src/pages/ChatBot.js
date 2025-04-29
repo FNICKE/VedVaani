@@ -19,26 +19,31 @@ const ChatBot = () => {
   const navigate = useNavigate();
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
 
-  const [text, settext] = useState("");
+  const [text, setText] = useState("");
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!text.trim()) {
+      setError("Please enter some text");
+      setTimeout(() => setError(""), 5000);
+      return;
+    }
+
+    console.log("Submitting text:", text); // Debug log
     try {
-      const { data } = await axios.post("/api/v1/openai/chatbot", { text });
-      console.log(data);
+      const { data } = await axios.post(
+        "http://localhost:5000/api/v1/openai/chatbot",
+        { text }
+      );      console.log("Response data:", data);
       setResponse(data);
     } catch (err) {
-      console.log(err);
-      if (err.response?.data?.error) {
-        setError(err.response.data.error);
-      } else if (err.message) {
-        setError(err.message);
-      }
-      setTimeout(() => {
-        setError("");
-      }, 5000);
+      console.error("Error:", err);
+      const errorMessage =
+        err.response?.data?.message || err.message || "An error occurred";
+      setError(errorMessage);
+      setTimeout(() => setError(""), 5000);
     }
   };
 
@@ -82,7 +87,7 @@ const ChatBot = () => {
             margin="normal"
             fullWidth
             value={text}
-            onChange={(e) => settext(e.target.value)}
+            onChange={(e) => setText(e.target.value)}
           />
 
           <Button
@@ -108,7 +113,10 @@ const ChatBot = () => {
 
           <Typography mt={2} textAlign="center">
             Not this tool?{" "}
-            <Link to="/" style={{ color: theme.palette.primary.main, fontWeight: "bold" }}>
+            <Link
+              to="/"
+              style={{ color: theme.palette.primary.main, fontWeight: "bold" }}
+            >
               Go Back
             </Link>
           </Typography>
