@@ -1,5 +1,10 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
 import axios from "axios";
 import {
   Box,
@@ -13,17 +18,28 @@ import {
   Card,
 } from "@mui/material";
 
+<<<<<<< HEAD
 const Paragraph = () => {
   const theme = useTheme();
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
 
   const [text, setText] = useState("");
   const [para, setPara] = useState("");
+=======
+const Summary = () => {
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const isNotMobile = useMediaQuery("(min-width: 1000px)");
+
+  const [text, settext] = useState("");
+  const [summary, setSummary] = useState("");
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+<<<<<<< HEAD
       // Use environment variable or fallback to backend port
       const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
       const requestUrl = `${API_URL}/api/v1/openai/paragraph`;
@@ -56,6 +72,18 @@ const Paragraph = () => {
         setError("An unexpected error occurred.");
       }
 
+=======
+      const { data } = await axios.post("http://localhost:5000/api/v1/openai/summary", { text });
+      console.log(data);
+      setSummary(data);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else if (err.message) {
+        setError(err.message);
+      }
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -66,7 +94,10 @@ const Paragraph = () => {
     <Box
       minHeight="100vh"
       display="flex"
+<<<<<<< HEAD
       flexDirection="column"
+=======
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
       alignItems="center"
       justifyContent="center"
       sx={{
@@ -93,9 +124,16 @@ const Paragraph = () => {
             {error}
           </Alert>
         </Collapse>
+<<<<<<< HEAD
         <form onSubmit={handleSubmit}>
           <Typography variant="h3" fontWeight="bold" mb={2} textAlign="center">
             Generate Paragraph
+=======
+
+        <form onSubmit={handleSubmit}>
+          <Typography variant="h3" fontWeight="bold" mb={2} textAlign="center">
+            Summarize Text
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
           </Typography>
 
           <TextField
@@ -107,7 +145,11 @@ const Paragraph = () => {
             margin="normal"
             fullWidth
             value={text}
+<<<<<<< HEAD
             onChange={(e) => setText(e.target.value)}
+=======
+            onChange={(e) => settext(e.target.value)}
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
           />
 
           <Button
@@ -128,15 +170,23 @@ const Paragraph = () => {
               },
             }}
           >
+<<<<<<< HEAD
             Generate Paragraph
+=======
+            Submit
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
           </Button>
 
           <Typography mt={2} textAlign="center">
             Not this tool?{" "}
+<<<<<<< HEAD
             <Link
               to="/"
               style={{ color: theme.palette.primary.main, fontWeight: "bold" }}
             >
+=======
+            <Link to="/" style={{ color: theme.palette.primary.main, fontWeight: "bold" }}>
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
               Go Back
             </Link>
           </Typography>
@@ -155,8 +205,13 @@ const Paragraph = () => {
             overflowY: "auto",
           }}
         >
+<<<<<<< HEAD
           {para ? (
             <Typography>{para}</Typography>
+=======
+          {summary ? (
+            <Typography>{summary}</Typography>
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
           ) : (
             <Typography
               variant="h5"
@@ -166,7 +221,11 @@ const Paragraph = () => {
                 lineHeight: "450px",
               }}
             >
+<<<<<<< HEAD
               Your Paragraph Will Appear Here
+=======
+              Your Summary Will Appear Here
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
             </Typography>
           )}
         </Card>
@@ -175,4 +234,8 @@ const Paragraph = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Paragraph;
+=======
+export default Summary;
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd

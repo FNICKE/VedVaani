@@ -23,8 +23,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+<<<<<<< HEAD
     "eject": "react-scripts eject",
     "proxy": "http://localhost:3000"
+=======
+    "eject": "react-scripts eject"
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +47,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+<<<<<<< HEAD
     
+=======
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
   }
 }

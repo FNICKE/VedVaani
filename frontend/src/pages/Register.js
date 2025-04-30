@@ -27,7 +27,11 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+<<<<<<< HEAD
       await axios.post("http://localhost:3000/api/v1/auth/register", { username, email, password });
+=======
+      await axios.post("http://localhost:5000/api/v1/auth/register", { username, email, password });
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
       toast.success("User Registered Successfully!");
       navigate("/login");
     } catch (err) {

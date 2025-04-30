@@ -14,22 +14,30 @@ import {
   Card,
 } from "@mui/material";
 
+<<<<<<< HEAD
 // Configure axios with base URL
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:3000", // Fallback to localhost
 });
 
+=======
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
 const Summary = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
+<<<<<<< HEAD
   const [text, setText] = useState(""); // Fixed typo: settext -> setText
+=======
+  const [text, settext] = useState("");
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
   const [summary, setSummary] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+<<<<<<< HEAD
       const { data } = await api.post("/api/v1/openai/summary", { text });
       console.log("API Response:", data);
       setSummary(data);
@@ -42,6 +50,18 @@ const Summary = () => {
         err.message ||
         "Failed to fetch summary. Please try again.";
       setError(errorMessage);
+=======
+      const { data } = await axios.post("http://localhost:5000/api/v1/openai/summary", { text });
+      console.log(data);
+      setSummary(data);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else if (err.message) {
+        setError(err.message);
+      }
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -88,7 +108,11 @@ const Summary = () => {
             margin="normal"
             fullWidth
             value={text}
+<<<<<<< HEAD
             onChange={(e) => setText(e.target.value)} // Fixed typo: settext -> setText
+=======
+            onChange={(e) => settext(e.target.value)}
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
           />
 
           <Button
@@ -153,4 +177,8 @@ const Summary = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Summary;
+=======
+export default Summary;
+>>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
