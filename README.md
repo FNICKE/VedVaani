@@ -10,16 +10,12 @@
 
 ## 🎉 Features
 
-🔹 **Text Summarizer** – Condense lengthy articles or documents into concise, meaningful summaries.  
-🔹 **Paragraph Generator** – Generate coherent, context-aware paragraphs for blogs, essays, or reports.  
+🔹 **🧾 Text Summarizer** – Condense lengthy articles or documents into concise, meaningful summaries.  
+🔹 **📝 Paragraph Generator** – Generate coherent, context-aware paragraphs for blogs, essays, or reports.  
 🔹 **🤖 AI Chatbot** – Engage in real-time conversations with an AI assistant powered by OpenAI’s GPT models.  
 🔹 **💻 JS Code Converter** – Transform JavaScript code (e.g., ES5 to ES6) or generate code snippets from natural language prompts.  
 🔹 **🪐 Sci-Fi Image Generator** – Create stunning sci-fi visuals using OpenAI’s DALL·E or Stable Diffusion APIs.  
-🔹 **🎙️ Voice Input** – Interact with the chatbot or input text using voice commands for hands-free operation.  
-🔹 **🤝 Real-Time Collaboration** – Collaborate with team members on text or code projects with live editing and chat.  
-🔹 **📊 AI Usage Analytics** – Track your AI interactions (e.g., API calls, feature usage) with a dashboard.  
-🔹 **🌙 Dark Mode** – Toggle between light and dark themes for a comfortable user experience.  
-🔹 **🔄 Offline Mode** – Cache recent AI responses for limited offline functionality using service workers.
+
 
 ---
 
