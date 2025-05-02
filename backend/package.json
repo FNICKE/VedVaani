@@ -29,11 +29,12 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.13.2",
+    "mongoose": "^8.14.1",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.10",
-    "openai": "^4.96.0",
-    "react-hot-toast": "^2.5.2"
+    "openai": "^4.96.2",
+    "react-hot-toast": "^2.5.2",
+    "winston": "^3.17.0"
   },
   "proxy": "http://localhost:5000"
 }

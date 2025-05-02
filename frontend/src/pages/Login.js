@@ -26,30 +26,11 @@ const Login = () => {
   // Handle login
   const handleSubmit = async (e) => {
     e.preventDefault();
-<<<<<<< HEAD
     try {
       const { data } = await axios.post("http://localhost:3000/api/v1/auth/login", { email, password });
       
       if (data.token) {
         localStorage.setItem("authToken", true);
-=======
-    const trimmedEmail = email.trim();
-    const trimmedPassword = password.trim();
-    console.log("Submitting login:", { email: trimmedEmail, password: trimmedPassword }); // Debug log
-    if (!trimmedEmail || !trimmedPassword) {
-      setError("Email and password are required");
-      setTimeout(() => setError(""), 5000);
-      return;
-    }
-    try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/v1/auth/login", // Use proxied path
-        { email: trimmedEmail, password: trimmedPassword }
-      );
-
-      if (data.success && data.token) {
-        localStorage.setItem("authToken", data.token); // Store JWT
->>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
         toast.success("Login Successful!");
         navigate("/");
       }
@@ -119,29 +100,13 @@ const Login = () => {
             fullWidth
             variant="contained"
             size="large"
-<<<<<<< HEAD
             sx={{ mt: 3, color: "white", backgroundColor: "#0056b3", "&:hover": { backgroundColor: "#004494" } }}
-=======
-            sx={{
-              mt: 3,
-              color: "white",
-              backgroundColor: "#0056b3",
-              "&:hover": { backgroundColor: "#004494" },
-            }}
->>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
           >
             Sign In
           </Button>
 
           <Typography mt={2} textAlign="center">
-<<<<<<< HEAD
             Don't have an account? <Link to="/register" style={{ color: "#007bff" }}>Register</Link>
-=======
-            Don't have an account?{" "}
-            <Link to="/register" style={{ color: "#007bff" }}>
-              Register
-            </Link>
->>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
           </Typography>
         </form>
       </Box>
@@ -149,8 +114,4 @@ const Login = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Login;
-=======
-export default Login;
->>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd

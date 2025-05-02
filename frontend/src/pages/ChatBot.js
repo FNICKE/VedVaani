@@ -31,7 +31,6 @@ const ChatBot = () => {
       return;
     }
 
-<<<<<<< HEAD
     try {
       // Use environment variable or fallback to backend port
       const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
@@ -63,20 +62,6 @@ const ChatBot = () => {
         setError("An unexpected error occurred.");
       }
 
-=======
-    console.log("Submitting text:", text); // Debug log
-    try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/v1/openai/chatbot",
-        { text }
-      );      console.log("Response data:", data);
-      setResponse(data);
-    } catch (err) {
-      console.error("Error:", err);
-      const errorMessage =
-        err.response?.data?.message || err.message || "An error occurred";
-      setError(errorMessage);
->>>>>>> af0f15ebde229d6077bc08d44cf1b9406c8205cd
       setTimeout(() => setError(""), 5000);
     }
   };
