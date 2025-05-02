@@ -1,8 +1,3 @@
-Here is your full `README.md` content in one complete, ready-to-use Markdown file — all combined and formatted:
-
----
-
-```markdown
 # 🌟 VedVaani - AI Productivity Suite 🚀
 
 ![🖼️ UI Preview](./frontend/Screenshot%202025-05-02%20213103.png)
