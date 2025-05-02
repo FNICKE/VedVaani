@@ -1,9 +1,3 @@
-The **VedVaani** project, as described in your provided README, is an AI productivity suite built with a **MERN stack** (MongoDB, Express.js, React, Node.js) and integrated with **Material-UI** for the frontend and **OpenAI API** for AI-powered features. Unlike the earlier assumption based on the GitHub repository [https://github.com/FNICKE/VedVaani](https://github.com/FNICKE/VedVaani), which suggested a Python/Flask-based Sanskrit TTS system, your README clearly defines **VedVaani** as a React-based web application with Node.js backend and OpenAI integration. This aligns with the MERN stack context you requested, so I’ll proceed with upgrading the README, enhancing its content, and adding cool new features while maintaining the project’s structure and vision.
-
-Below is an upgraded version of the README with improved formatting, additional details, and exciting new features to make **VedVaani** a cutting-edge AI productivity suite. I’ll also address the frontend and backend technologies used, incorporate insights from the provided search results (where relevant), and suggest enhancements that align with 2025 AI and web development trends.
-
----
-
 # 🌟 VedVaani - AI Productivity Suite 🚀
 
 ![🖼️ UI Preview](./frontend/Screenshot%202025-05-02%20213103.png)
