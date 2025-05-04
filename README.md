@@ -4,7 +4,7 @@
 
 > ✨ **Empower Your Workflow with AI** — Summarize, Generate, Chat, Code, Imagine, and More in One Seamless Platform!
 
-**VedVaani** is a modern, responsive, and feature-packed AI-powered web application built with the **MERN stack** and styled with **Material-UI**. It combines text summarization, content generation, interactive chatbot capabilities, JavaScript code conversion, sci-fi image generation, and new cutting-edge features like real-time collaboration, voice input, and AI-driven analytics. Designed for productivity enthusiasts, developers, and creatives, VedVaani offers an intuitive interface to harness AI’s potential.
+**VedVaani** is a modern, responsive, and feature-packed AI-powered web application built with the **MERN stack** and styled with **Material-UI**. It combines text summarization, content generation, interactive chatbot capabilities, JavaScript code conversion, sci-fi image generation, & new cutting-edge features like real-time collaboration, voice input, and AI-driven analytics. Designed for productivity enthusiasts, developers, and creatives, VedVaani offers an intuitive interface to harness AI’s potential.
 
 ---
 
